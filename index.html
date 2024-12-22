@@ -4,21 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="1RW2SGYMLZMrVYp5ZSfInfbFIqQPV3yOiy_yPvMzeI0" />
-  <title>AntiPublic</title>
+  <title>AntiPublic Tool</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
   <!-- AOS Library for Animations -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
+  <!-- Lightbox2 CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" />
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       AOS.init();
     });
   </script>
-  <!-- Default Statcounter code for antipublic -->
   <script type="text/javascript">
-  var sc_project=13070233; 
-  var sc_invisible=1; 
-  var sc_security="03e8adc7"; 
+    var sc_project=13070233; 
+    var sc_invisible=1; 
+    var sc_security="03e8adc7"; 
   </script>
   <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
   <noscript>
@@ -28,63 +31,78 @@
       </a>
     </div>
   </noscript>
-  <!-- End of Statcounter Code -->
 </head>
 <body>
-  <header>
+  <header class="bg-primary text-white py-4">
     <div class="container">
-      <h1>AntiPublic Tool</h1>
+      <h1 class="display-4">AntiPublic Tool</h1>
       <nav>
-        <ul>
-          <li><a href="#features">Features</a></li>
-          <li><a href="#download">Download</a></li>
-          <li><a href="#contact">Contact</a></li>
+        <ul class="nav justify-content-center">
+          <li class="nav-item"><a href="#about" class="nav-link text-white">About</a></li>
+          <li class="nav-item"><a href="#features" class="nav-link text-white">Features</a></li>
+          <li class="nav-item"><a href="#download" class="nav-link text-white">Download</a></li>
+          <li class="nav-item"><a href="#contact" class="nav-link text-white">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <section id="about" data-aos="fade-up">
+  <section id="about" class="py-5" data-aos="fade-up">
     <div class="container">
-      <h2>Welcome to AntiPublic Tool</h2>
-      <p>AntiPublic Tool allows you to check combos using our database. Tool is free and fast, efficient, and easy to use.</p>
-      <a href="#download" class="cta-button">Get Started</a>
+      <h2 class="h3 mb-4">About AntiPublic</h2>
+      <p>AntiPublic is a powerful tool designed to check combos and determine if they are private or not. It helps ensure you work only with high-quality, private data by filtering out public or junk emails.</p>
     </div>
   </section>
 
-  <section id="features" class="feature-section" data-aos="fade-up" data-aos-delay="100">
+  <section id="features" class="bg-light py-5" data-aos="fade-up" data-aos-delay="100">
     <div class="container">
-      <h2>Key Features</h2>
-      <ul>
-        <li><strong>Private Base Checker:</strong> AntiPublic is a revolutionary tool designed for checking in our database and filtering out junk or public mail, saving you valuable time.</li>
-        <li><strong>Efficiency:</strong> Our software is fast, simple to use, similar to other tools.</li>
-        <li><strong>Compatible with Major Windows Versions:</strong> AntiPublic works seamlessly on Windows 10, Windows 8 (8.1), and offers a smooth experience.</li>
-        <li><strong>Real-Time Performance:</strong> Track processing in real-time and monitor the status of your checks for maximum control.</li>
-        <li><strong>Advanced Filtering:</strong> The tool ensures you only work with high-quality, private data, helping you avoid public or junk mails.</li>
+      <h2 class="h3 mb-4">Features</h2>
+      <ul class="list-unstyled">
+        <li><i class="fas fa-check-circle"></i> <strong>Private Base Checker:</strong> AntiPublic filters out junk or public mail, saving you valuable time.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Efficiency:</strong> Fast and simple to use, similar to other tools.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Windows Compatibility:</strong> Works seamlessly on all Windows versions.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Real-Time Performance:</strong> Track processing in real-time and monitor checks for maximum control.</li>
+        <li><i class="fas fa-check-circle"></i> <strong>Advanced Filtering:</strong> Ensures you only work with high-quality, private data.</li>
       </ul>
     </div>
   </section>
 
-  <section id="download" class="download-section" data-aos="fade-up" data-aos-delay="200">
+  <section id="images" class="py-5" data-aos="fade-up" data-aos-delay="200">
     <div class="container">
-      <h2>Download the Tool</h2>
-      <p>Download the latest version of the AntiPublic Tool and start checking today.</p>
-      <a href="https://github.com/yassine9-11/antipublic" class="cta-button" target="_blank">Download Now</a>
+      <h2 class="h3 mb-4">Tool Images</h2>
+      <div class="row">
+        <div class="col-md-4">
+          <a href="photo_2024-12-22_17-28-39.jpg" data-lightbox="tool-image" data-title="Tool Image 1">
+            <img src="photo_2024-12-22_17-28-39.jpg" class="img-fluid rounded shadow" alt="Tool Image 3">
+          </a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section id="contact" class="contact-section" data-aos="fade-up" data-aos-delay="300">
-    <div class="container">
-      <h2>Contact & Support</h2>
+  <section id="download" class="py-5" data-aos="fade-up" data-aos-delay="300">
+    <div class="container text-center">
+      <h2 class="h3 mb-4">Download the Tool</h2>
+      <p class="lead">Download the latest version of AntiPublic Tool and start checking today.</p>
+      <a href="https://github.com/yassine9-11/antipublic/releases/latest" class="btn btn-primary btn-lg" target="_blank">Download Now</a>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-light py-5" data-aos="fade-up" data-aos-delay="400">
+    <div class="container text-center">
+      <h2 class="h3 mb-4">Contact & Support</h2>
       <p>If you need support or have any questions about the AntiPublic Tool, feel free to reach out to me on Telegram.</p>
-      <a href="https://t.me/yassine9_11" class="cta-button" target="_blank">Contact on Telegram</a>
+      <a href="https://t.me/yassine9_11" class="btn btn-success btn-lg" target="_blank">Contact on Telegram</a>
     </div>
   </section>
 
-  <footer>
-    <div class="container">
+  <footer class="bg-primary text-white py-3">
+    <div class="container text-center">
       <p>&copy; 2024 AntiPublic Tool. All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- Lightbox2 JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js" defer></script>
 </body>
 </html>

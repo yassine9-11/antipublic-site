@@ -30,6 +30,10 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <link rel="shortcut icon" type="image/png" href="logo.png">
 </head>
 <body>
+    <div id="toolStoppedMessage" style="text-align: center; margin: 20px;">
+        <p>The tool is currently unavailable. This due to maintenance. Please check it later or use the site at <a href="www.antipublic.us.kg" target="_blank">www.antipublic.us.kg</a> for checking.</p>
+        <button id="goToSiteButton">Go to Site</button>
+    </div>
     <script>
     async function fetchLatestVersion() {
         try {
@@ -99,6 +103,23 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Show the tool stopped message
+        document.getElementById('toolStoppedMessage').style.display = 'block';
+
+        // Add event listener for the Go to Site button
+        document.getElementById('goToSiteButton').addEventListener('click', () => {
+            window.open('http://www.antipublic.us.kg/', '_blank'); // Redirect to the site
+        });
+
+        // Add event listener for the Download button
+        document.querySelector('.github-button').addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default action
+            const userResponse = confirm('The tool is currently unavailable. Would you like to visit the site instead?');
+            if (userResponse) {
+                window.open('http://www.antipublic.us.kg/', '_blank'); // Open the site in a new tab
+            }
+        });
+
         fetchLatestVersion();
         fetchToolStatistics();
         fetchLatestReleaseUrl(); // Fetch the latest release URL

@@ -31,7 +31,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 </head>
 <body>
     <div id="toolStoppedMessage" style="text-align: center; margin: 20px;">
-        <p>The tool is currently unavailable. This due to maintenance. Please check it later or use the site at <a href="antipublic.us.kg" target="_blank">antipublic.us.kg</a> for checking.</p>
+        <p>The tool is currently unavailable. This due to maintenance. Check it later or use web version of it at <a href="https://antipublic.us.kg" target="_blank">antipublic.us.kg</a></p>
         <button id="goToSiteButton">Go to Site</button>
     </div>
     <script>
@@ -114,7 +114,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
         // Add event listener for the Download button
         document.querySelector('.github-button').addEventListener('click', (event) => {
             event.preventDefault(); // Prevent default action
-            const userResponse = confirm('The tool is currently unavailable. Would you like to visit the site instead?');
+            const userResponse = confirm('The tool is currently unavailable. Would you like to use web version of it instead?');
             if (userResponse) {
                 window.open('https://antipublic.us.kg/', '_blank'); // Open the site in a new tab
             }

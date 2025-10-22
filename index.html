@@ -4,7 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="1RW2SGYMLZMrVYp5ZSfInfbFIqQPV3yOiy_yPvMzeI0" />
-    <title>AntiPublic</title>
+    <title>AntiPublic - Private Combo Checker</title>
+    <meta name="description" content="AntiPublic is a powerful tool to check combos and filter out public or junk emails, ensuring you work with high-quality private data.">
+    <meta name="keywords" content="AntiPublic, combo checker, private data, email filter, combo list, private combo">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yassine9-11.github.io/antipublic-site/">
+    <meta property="og:title" content="AntiPublic - Private Combo Checker">
+    <meta property="og:description" content="A powerful tool to check combos and filter out public or junk emails.">
+    <meta property="og:image" content="https://yassine9-11.github.io/antipublic-site/antipublic.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://yassine9-11.github.io/antipublic-site/">
+    <meta property="twitter:title" content="AntiPublic - Private Combo Checker">
+    <meta property="twitter:description" content="A powerful tool to check combos and filter out public or junk emails.">
+    <meta property="twitter:image" content="https://yassine9-11.github.io/antipublic-site/antipublic.png">
+
     <link rel="stylesheet" href="styles.css">
     
 <!-- Default Statcounter code for antipublic
@@ -32,10 +49,6 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <link rel="shortcut icon" type="image/png" href="logo.png">
 </head>
 <body>
-    <div id="toolStoppedMessage" style="text-align: center; margin: 20px;">
-        <p>The tool is currently unavailable. This due to maintenance. Check it later or use web version of it at <a href="https://antipublic.us.kg" target="_blank">antipublic.us.kg</a></p>
-        <button id="goToSiteButton">Go to Site</button>
-    </div>
     <script>
     async function fetchLatestVersion() {
         try {
@@ -105,22 +118,8 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        // Show the tool stopped message
-        document.getElementById('toolStoppedMessage').style.display = 'block';
 
-        // Add event listener for the Go to Site button
-        document.getElementById('goToSiteButton').addEventListener('click', () => {
-            window.open('https://antipublic.us.kg/', '_blank'); // Redirect to the site
-        });
-
-        // Add event listener for the Download button
-        document.querySelector('.github-button').addEventListener('click', (event) => {
-            event.preventDefault(); // Prevent default action
-            const userResponse = confirm('The tool is currently unavailable. Would you like to use web version of it instead?');
-            if (userResponse) {
-                window.open('https://antipublic.us.kg/', '_blank'); // Open the site in a new tab
-            }
-        });
+        // Add event listener for the Download butto
 
         fetchLatestVersion();
         fetchToolStatistics();
@@ -390,18 +389,18 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
         </div>
     </header>
 
-    <div class="container">
-        <div class="showcase-section">
+    <main class="container">
+        <section class="showcase-section">
             <h2>Tool Preview</h2>
             <div class="screenshot-container">
-                <img src="antipublic.png" class="tool-screenshot">
+                <img src="antipublic.png" class="tool-screenshot" alt="A screenshot of the AntiPublic tool showing its user interface.">
                 <div class="screenshot-overlay">
                     <span>screenshot from tool</span>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="tech-stack">
+        <section class="tech-stack">
             <h2>Tool Statistics</h2>
             <div class="statistics-grid">
                 <div class="stat-card">
@@ -422,31 +421,31 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                     <div class="stat-label">Repository Views</div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="features">
-            <div class="feature-card">
+        <section class="features">
+            <article class="feature-card">
                 <h3>🚀 Private Base Checker</h3>
                 <p>Advanced filtering system that removes junk and public credentials, ensuring you work only with high-quality, private data.</p>
-            </div>
+            </article>
 
-            <div class="feature-card">
+            <article class="feature-card">
                 <h3>⚡ Efficient Processing</h3>
                 <p>Fast and user-friendly interface, designed for simplicity while maintaining powerful functionality.</p>
-            </div>
+            </article>
 
-            <div class="feature-card">
+            <article class="feature-card">
                 <h3>🖥️ Windows Compatible</h3>
                 <p>Seamlessly works across all Windows versions, ensuring broad compatibility.</p>
-            </div>
+            </article>
 
-            <div class="feature-card">
+            <article class="feature-card">
                 <h3>📊 Real-time Monitoring</h3>
                 <p>Track processing progress and monitor checks in real-time for maximum control over your operations.</p>
-            </div>
-        </div>
+            </article>
+        </section>
 
-        <div class="tech-stack">
+        <section class="tech-stack">
             <h2>Key Features</h2>
             <ul>
                 <li>Advanced junk and public mail filtering</li>
@@ -455,19 +454,18 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                 <li>Real-time progress tracking</li>
                 <li>User-friendly interface</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="tech-stack">
+        <section class="tech-stack">
             <h2>Technical Details</h2>
             <ul>
                 <li>Threading support for fast processing</li>
-                <li>GUI elements using tkinter</li>
-                <li>Colorful console output with colorama</li>
-                <li>Automatic update checking via GitHub API</li>
+                <li>GUI elements</li>
+                <li>Automatic update checking</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="tech-stack">
+        <section class="tech-stack">
             <h2>How to Use</h2>
             <ol>
                 <li>Run the tool and select your combo file (.txt format)</li>
@@ -475,18 +473,18 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                 <li>Monitor real-time progress</li>
                 <li>Results will be saved in the "Result" folder</li>
             </ol>
-        </div>
+        </section>
 
-        <div class="tech-stack">
+        <section class="tech-stack">
             <h2>Performance Tips</h2>
             <ul>
                 <li><strong>Optimal Thread Count:</strong> Start with 50 threads and adjust based on your system's performance</li>
                 <li><strong>File Size:</strong> For best results, process files under 1GB at a time</li>
                 <li><strong>Regular Updates:</strong> Always use the latest version for best performance and features</li>
             </ul>
-        </div>
+        </section>
 
-        <div class="testimonials-section">
+        <section class="testimonials-section">
             <h2>User Reviews</h2>
             <div class="testimonials-grid">
                 <!-- Reviews will be loaded dynamically -->
@@ -522,9 +520,9 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                     <button type="submit" class="submit-review">Submit Review</button>
                 </form>
             </div>
-        </div>
+        </section>
 
-        <div class="contact-section">
+        <section class="contact-section">
             <h2>Contact & Support</h2>
             <p>If you need support or have any questions about the AntiPublic Tool, feel free to reach out to me on Telegram.</p>
             <a href="https://t.me/yassine9_11" class="telegram-button" target="_blank">
@@ -533,8 +531,8 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                 </svg>
                 Contact on Telegram
             </a>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">

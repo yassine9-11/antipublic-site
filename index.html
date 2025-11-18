@@ -124,7 +124,41 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
     document.addEventListener('DOMContentLoaded', () => {
 
-        // Add event listener for the Download butto
+        // Add event listener for the Download button
+        const testButton = document.getElementById('testButton');
+        if (testButton) {
+            testButton.addEventListener('click', async () => {
+                const emailInput = document.getElementById('emailInput');
+                const passwordInput = document.getElementById('passwordInput');
+                const resultDiv = document.getElementById('apiResult');
+
+                const email = emailInput.value.trim();
+                const password = passwordInput.value.trim();
+
+                if (!email || !password) {
+                    resultDiv.innerHTML = '<p style="color: red;">Please enter both email and password.</p>';
+                    return;
+                }
+
+                try {
+                    resultDiv.innerHTML = '<p>Checking credentials...</p>';
+
+                    const response = await fetch(`https://api.antipublic.qzz.io/credentials/checkLine?email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`);
+                    const data = await response.json();
+
+                    if (data.is_private !== undefined) {
+                        const status = data.is_private ? 'Private' : 'Not Private';
+                        const color = data.is_private ? 'green' : 'red';
+                        resultDiv.innerHTML = `<p>Credentials are: <span style="color: ${color}; font-weight: bold;">${status}</span></p>`;
+                    } else {
+                        resultDiv.innerHTML = '<p style="color: orange;">Could not determine if credentials are private.</p>';
+                    }
+                } catch (error) {
+                    console.error('Error checking credentials:', error);
+                    resultDiv.innerHTML = '<p style="color: red;">Error checking credentials. Please try again later.</p>';
+                }
+            });
+        }
 
         fetchLatestVersion();
         fetchToolStatistics();
@@ -226,6 +260,17 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
                 <li>Monitor real-time progress</li>
                 <li>Results will be saved in the "Result" folder</li>
             </ol>
+        </section>
+
+        <section class="tech-stack">
+            <h2>Test Credentials</h2>
+            <p>Enter an email and password to check if the credentials are private:</p>
+            <div class="api-test-form">
+                <input type="email" id="emailInput" placeholder="Enter email" required>
+                <input type="password" id="passwordInput" placeholder="Enter password" required>
+                <button id="testButton">Check Credentials</button>
+            </div>
+            <div id="apiResult" class="api-result"></div>
         </section>
 
         <section class="tech-stack">

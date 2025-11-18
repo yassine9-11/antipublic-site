@@ -54,6 +54,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
     <link rel="shortcut icon" type="image/png" href="logo.png">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <script>
     async function fetchLatestVersion() {
         try {
@@ -78,6 +79,9 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
             obj.innerHTML = Math.floor(progress * (end - start) + start);
             if (progress < 1) {
                 window.requestAnimationFrame(step);
+            } else {
+                // Remove loading class once animation is complete
+                obj.classList.remove('loading-skeleton');
             }
         };
         window.requestAnimationFrame(step);
@@ -167,7 +171,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
     </script>
 
-    <header>
+    <header role="banner">
         <div class="container">
             <h1>AntiPublic</h1>
             <div class="version-badge"><p><strong>Current Version: <span class="version-display">Loading...</span></strong></p></div>
@@ -176,7 +180,24 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
         </div>
     </header>
 
-    <main class="container">
+    <main id="main-content" class="container" role="main">
+        <section class="tech-stack">
+            <h2>Test Credentials</h2>
+            <p>Enter an email and password to check if the credentials are private:</p>
+            <div class="api-test-form">
+                <div class="form-group">
+                    <label for="emailInput" class="sr-only">Email Address</label>
+                    <input type="email" id="emailInput" name="email" placeholder="Enter email" required aria-describedby="emailHelp">
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput" class="sr-only">Password</label>
+                    <input type="password" id="passwordInput" name="password" placeholder="Enter password" required aria-describedby="passwordHelp">
+                </div>
+                <button id="testButton" aria-label="Check Credentials">Check Credentials</button>
+            </div>
+            <div id="apiResult" class="api-result" role="alert" aria-live="polite"></div>
+        </section>
+
         <section class="showcase-section">
             <h2>Tool Preview</h2>
             <div class="screenshot-container">
@@ -191,11 +212,11 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
             <h2>Tool Statistics</h2>
             <div class="statistics-grid">
                 <div class="stat-card">
-                    <div class="stat-value"><span id="total-downloads" class="counter">0</span>+</div>
+                    <div class="stat-value"><span id="total-downloads" class="counter loading-skeleton" aria-label="Loading downloads count">0</span>+</div>
                     <div class="stat-label">Downloads</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-value"><span id="total-stars" class="counter">0</span></div>
+                    <div class="stat-value"><span id="total-stars" class="counter loading-skeleton" aria-label="Loading stars count">0</span></div>
                     <div class="stat-label">GitHub Stars</div>
                     <a href="https://github.com/yassine9-11/antipublic" target="_blank" class="github-star-button">
                         give us a⭐ Star on GitHub
@@ -212,22 +233,22 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
 
         <section class="features">
             <article class="feature-card">
-                <h3>🚀 Private Base Checker</h3>
+                <h3><span class="feature-icon">🔒</span> Private Base Checker</h3>
                 <p>Advanced filtering system that removes junk and public credentials, ensuring you work only with high-quality, private data.</p>
             </article>
 
             <article class="feature-card">
-                <h3>⚡ Efficient Processing</h3>
+                <h3><span class="feature-icon">⚡</span> Efficient Processing</h3>
                 <p>Fast and user-friendly interface, designed for simplicity while maintaining powerful functionality.</p>
             </article>
 
             <article class="feature-card">
-                <h3>🖥️ Windows Compatible</h3>
+                <h3><span class="feature-icon">🖥️</span> Windows Compatible</h3>
                 <p>Seamlessly works across all Windows versions, ensuring broad compatibility.</p>
             </article>
 
             <article class="feature-card">
-                <h3>📊 Real-time Monitoring</h3>
+                <h3><span class="feature-icon">📊</span> Real-time Monitoring</h3>
                 <p>Track processing progress and monitor checks in real-time for maximum control over your operations.</p>
             </article>
         </section>
@@ -262,16 +283,6 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
             </ol>
         </section>
 
-        <section class="tech-stack">
-            <h2>Test Credentials</h2>
-            <p>Enter an email and password to check if the credentials are private:</p>
-            <div class="api-test-form">
-                <input type="email" id="emailInput" placeholder="Enter email" required>
-                <input type="password" id="passwordInput" placeholder="Enter password" required>
-                <button id="testButton">Check Credentials</button>
-            </div>
-            <div id="apiResult" class="api-result"></div>
-        </section>
 
         <section class="tech-stack">
             <h2>Performance Tips</h2>
@@ -286,7 +297,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
         <section class="contact-section">
             <h2>Contact & Support</h2>
             <p>If you need support or have any questions about the AntiPublic Tool, feel free to reach out to me on Telegram.</p>
-            <a href="https://t.me/yassine9_11" class="telegram-button" target="_blank">
+            <a href="https://t.me/yassine9_11" class="telegram-button" target="_blank" rel="noopener" aria-label="Contact on Telegram (opens in a new tab)">
                 <svg class="telegram-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.2-.04-.28-.02-.12.02-1.98 1.26-5.61 3.71-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.06-.49-.83-.27-1.49-.42-1.43-.89.03-.25.35-.51.96-.78 3.78-1.64 6.29-2.73 7.54-3.26 3.59-1.53 4.34-1.8 4.83-1.81.11 0 .35.03.51.14.13.1.17.23.19.33.02.12.01.24.01.24z"/>
                 </svg>
@@ -295,7 +306,7 @@ referrerPolicy="no-referrer-when-downgrade"></a></div></noscript>
         </section>
     </main>
 
-    <footer>
+    <footer role="contentinfo">
         <div class="container">
             <p>Created by @yassine9_11</p>
             <p>Current Version: <span class="version-display">Loading...</span></p>

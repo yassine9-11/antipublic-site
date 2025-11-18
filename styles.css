@@ -354,6 +354,55 @@
                 font-size: 0.85em;
             }
 
+            .testimonials-section {
+                padding: 25px 20px;
+            }
+
+            .testimonials-section h2 {
+                font-size: 1.6em;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr; /* Single column testimonial cards */
+                gap: 15px;
+            }
+
+            .testimonial-card {
+                padding: 20px;
+                position: relative;
+            }
+
+            .user-avatar {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                margin-left: auto;
+                margin-right: auto;
+                margin-bottom: 12px;
+            }
+
+            .rating {
+                justify-content: center;
+                margin-bottom: 12px;
+            }
+
+            .testimonial-text {
+                font-size: 0.95em;
+                margin: 12px 0;
+            }
+
+            .delete-review {
+                top: 5px;
+                right: 5px;
+                width: 20px;
+                height: 20px;
+                font-size: 16px;
+            }
+
+            .review-form {
+                padding: 20px;
+            }
+
             footer {
                 padding: 20px;
             }
@@ -429,6 +478,37 @@
             .stat-label {
                 font-size: 1em;
             }
+
+            .testimonial-card {
+                padding: 18px;
+            }
+
+            .testimonial-text {
+                font-size: 0.95em;
+            }
+
+            .review-form h3 {
+                font-size: 1.4em;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 8px;
+            }
+
+            .submit-review {
+                padding: 10px 20px;
+            }
+
+            .star {
+                font-size: 20px;
+            }
+
+            .show-review-btn {
+                padding: 10px 20px;
+                font-size: 0.95em;
+            }
+        }
 
         .statistics-grid {
             display: grid;

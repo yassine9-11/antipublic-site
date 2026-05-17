@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin/
-Disallow: /.git/
 
 Sitemap: https://antipublic.sytes.net/sitemap.xml

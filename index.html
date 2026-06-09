@@ -123,34 +123,43 @@
         }
 
         async function fetchRepoViews() {
-            const badgeUrl = 'https://hits.sh/github.com/yassine9-11/antipublic.svg?style=for-the-badge&label=VIEWS&extraCount=200';
-            // hits.sh doesn't send CORS headers, so route through a public CORS proxy.
-            const proxies = [
-                u => `https://api.codetabs.com/v1/proxy?url=${encodeURIComponent(u)}`
-            ];
+            const badgeUrl =
+                'https://hits.sh/github.com/yassine9-11/antipublic.svg?style=for-the-badge&label=VIEWS&extraCount=200';
+        
             const el = document.getElementById('total-views');
+        
+            const proxies = [
+                (u) => `https://corsproxy.io/?url=${encodeURIComponent(u)}`,
+                (u) => `https://bypass.cors.rest/proxy?url=${encodeURIComponent(u)}`,
+                (u) => `https://proxy.killcors.com?url=${encodeURIComponent(u)}`,
+                (u) => `https://cors.x2u.in?url=${encodeURIComponent(u)}`,
+                (u) => `https://allorigins.win/raw?url=${encodeURIComponent(u)}`
+            ];
+        
             for (const buildUrl of proxies) {
                 try {
                     const response = await fetch(buildUrl(badgeUrl), { cache: 'no-store' });
                     if (!response.ok) continue;
+        
                     const svgText = await response.text();
-                    const match = svgText.match(/aria-label="[^"]*?:\s*([\d,\.]+)"/i)
-                        || svgText.match(/<title>[^<]*?:\s*([\d,\.]+)<\/title>/i);
+        
+                    const match =
+                        svgText.match(/aria-label="[^"]*?:\s*([\d,\.]+)"/i) ||
+                        svgText.match(/<title>[^<]*?:\s*([\d,\.]+)<\/title>/i);
+        
                     if (!match) continue;
+        
                     const views = parseInt(match[1].replace(/[^\d]/g, ''), 10);
+        
                     if (Number.isFinite(views)) {
                         animateValue(el, 0, views, 2000);
                         return;
                     }
-                } catch (e) {
-                    console.warn('Views proxy failed:', e);
-                }
+                } catch (e) {}
             }
-            console.error('All view-count proxies failed');
-            if (el) {
-                el.textContent = '—';
-                el.classList.remove('loading-skeleton');
-            }
+        
+            el.textContent = '—';
+            el.classList.remove('loading-skeleton');
         }
 
         document.addEventListener('DOMContentLoaded', () => {

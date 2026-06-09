@@ -126,7 +126,7 @@
             const badgeUrl = 'https://hits.sh/github.com/yassine9-11/antipublic.svg?style=for-the-badge&label=VIEWS&extraCount=200';
             // hits.sh doesn't send CORS headers, so route through a public CORS proxy.
             const proxies = [
-                u => `https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(u)}`
+                u => `https://api.codetabs.com/v1/proxy?url=${encodeURIComponent(u)}`
             ];
             const el = document.getElementById('total-views');
             for (const buildUrl of proxies) {

@@ -129,11 +129,7 @@
             const el = document.getElementById('total-views');
         
             const proxies = [
-                (u) => `https://proxy.corsfix.com/?${encodeURIComponent(u)}`,
-                (u) => `https://everyorigin.jwvbremen.nl/get?url=${encodeURIComponent(u)}`,
-                (u) => `https://proxy.killcors.com?url=${encodeURIComponent(u)}`,
-                (u) => `https://cors.x2u.in?url=${encodeURIComponent(u)}`,
-                (u) => `https://allorigins.win/raw?url=${encodeURIComponent(u)}`
+                (u) => `https://every-origin.vercel.app/get?url=${encodeURIComponent(u)}`
             ];
         
             for (const buildUrl of proxies) {

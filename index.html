@@ -54,6 +54,7 @@
         data-website-id="270a5e01-ba95-4ae1-a86c-d85604c8c662"></script>
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="shortcut icon" type="image/png" href="logo.png">
+<base target="_blank">
 </head>
 
 <body>
@@ -129,7 +130,7 @@
             const el = document.getElementById('total-views');
         
             const proxies = [
-                (u) => `https://everyorigin.jwvbremen.nl/get?url=${encodeURIComponent(u)}`
+                (u) => `https://every-origin.vercel.app/api/get?url=${u}`
             ];
         
             for (const buildUrl of proxies) {

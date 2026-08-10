@@ -64,11 +64,6 @@
     <div class="bg-aurora" aria-hidden="true"></div>
 
     <script>
-        // ===================== CORS PROXY FIX =====================
-        // Issue: everyorigin.jwvbremen.nl is dead and URL was not encoded
-        // Fix: Multiple fallback proxies + encodeURIComponent
-        // ==========================================================
-
         async function fetchLatestVersion() {
             try {
                 const response = await fetch('https://api.github.com/repos/yassine9-11/antipublic/releases/latest');
@@ -129,70 +124,57 @@
             }
         }
 
-        // ===================== FIXED fetchRepoViews =====================
-        // Replaces dead everyorigin.jwvbremen.nl with multiple working CORS proxies
-        // Uses encodeURIComponent to properly encode the target URL
-        // ===============================================================
+        // ===================== CUSTOM CORS PROXY =====================
+        // Using your own Cloudflare Worker: https://proxy.antipublic.qzz.io
+        // No more relying on third-party proxies that go down randomly.
+        // =============================================================
         async function fetchRepoViews() {
             const badgeUrl = 'https://hits.sh/github.com/yassine9-11/antipublic.svg?style=for-the-badge&label=VIEWS&extraCount=200';
             const el = document.getElementById('total-views');
 
-            // Multiple fallback CORS proxies — ordered by reliability for SVG fetching
-            // IMPORTANT: Always use encodeURIComponent(u) so & inside the target URL
-            // doesn't leak into the proxy's query string.
-            const proxies = [
-                (u) => `https://api.allorigins.win/raw?url=${encodeURIComponent(u)}`,
-                (u) => `https://corsproxy.io/?${encodeURIComponent(u)}`,
-                (u) => `https://proxy.corsfix.com/?${encodeURIComponent(u)}`
-            ];
+            try {
+                const response = await fetch(
+                    `https://proxy.antipublic.qzz.io/?url=${encodeURIComponent(badgeUrl)}`,
+                    { cache: 'no-store', headers: { 'Accept': 'image/svg+xml,*/*' } }
+                );
 
-            for (const buildUrl of proxies) {
-                try {
-                    const response = await fetch(buildUrl(badgeUrl), { 
-                        cache: 'no-store',
-                        headers: { 'Accept': 'image/svg+xml,*/*' }
-                    });
+                if (!response.ok) {
+                    throw new Error(`Proxy returned ${response.status}`);
+                }
 
-                    if (!response.ok) {
-                        console.warn(`Proxy returned ${response.status}: ${buildUrl(badgeUrl)}`);
-                        continue;
-                    }
+                const svgText = await response.text();
 
-                    const svgText = await response.text();
+                // Defensive: skip empty or non-SVG responses
+                if (!svgText || svgText.length < 50 || !svgText.includes('<svg')) {
+                    throw new Error('Invalid SVG response');
+                }
 
-                    // Defensive: skip empty or non-SVG responses
-                    if (!svgText || svgText.length < 50 || !svgText.includes('<svg')) {
-                        continue;
-                    }
+                // hits.sh embeds the count in aria-label or title like "VIEWS: 1,234"
+                const patterns = [
+                    /aria-label="[^"]*?:\s*([\d,\.]+)"/i,
+                    /<title>[^<]*?:\s*([\d,\.]+)<\/title>/i,
+                    />([\d,\.]+)\s*(?:views?|hits?|visits?)<\/text>/i,
+                    />([\d,]+)<\/text>/i
+                ];
 
-                    // hits.sh embeds the count in aria-label or title like "VIEWS: 1,234"
-                    const patterns = [
-                        /aria-label="[^"]*?:\s*([\d,\.]+)"/i,
-                        /<title>[^<]*?:\s*([\d,\.]+)<\/title>/i,
-                        />([\d,\.]+)\s*(?:views?|hits?|visits?)<\/text>/i,
-                        />([\d,]+)<\/text>/i  // Last resort
-                    ];
-
-                    for (const regex of patterns) {
-                        const match = svgText.match(regex);
-                        if (match) {
-                            const views = parseInt(match[1].replace(/[^\d]/g, ''), 10);
-                            if (Number.isFinite(views) && views >= 0) {
-                                animateValue(el, 0, views, 2000);
-                                return;
-                            }
+                for (const regex of patterns) {
+                    const match = svgText.match(regex);
+                    if (match) {
+                        const views = parseInt(match[1].replace(/[^\d]/g, ''), 10);
+                        if (Number.isFinite(views) && views >= 0) {
+                            animateValue(el, 0, views, 2000);
+                            return;
                         }
                     }
-                } catch (e) {
-                    console.warn('Proxy failed:', e.message);
-                    continue;
                 }
-            }
 
-            // All proxies failed
-            el.textContent = '—';
-            el.classList.remove('loading-skeleton');
-            console.error('All CORS proxies failed. Could not fetch view count.');
+                throw new Error('Could not parse view count from SVG');
+
+            } catch (error) {
+                console.error('fetchRepoViews error:', error.message);
+                el.textContent = '—';
+                el.classList.remove('loading-skeleton');
+            }
         }
 
         document.addEventListener('DOMContentLoaded', () => {
